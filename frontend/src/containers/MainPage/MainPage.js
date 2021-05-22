@@ -1,10 +1,40 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {getRequest} from "../../store/sagas/picturesSaga";
+import {Grid, Typography} from "@material-ui/core";
+import PhotoPreview from "../../components/PhotoPreview/PhotoPreview";
 
 const MainPage = () => {
+  const dispatch = useDispatch();
+  const pictures = useSelector(state => state.pictures.pictures);
+
+  useEffect(()=>{
+    dispatch(getRequest());
+  }, [dispatch]);
+
+  let picturesList = (
+    <Typography variant='h4'>
+      It seems there no pictures in DataBase
+    </Typography>
+  );
+
+  if (pictures.length > 0) {
+    picturesList = (
+      pictures.map(pic => (
+        <PhotoPreview
+          key={pic.id}
+          image={pic.image}
+          author={pic.author.username}
+          name={pic.name}
+        />
+      ))
+    )
+  };
+
   return (
-    <div>
-      Yeeah
-    </div>
+    <Grid container>
+      {picturesList}
+    </Grid>
   );
 };
 

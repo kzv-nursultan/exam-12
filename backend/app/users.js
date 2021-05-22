@@ -127,15 +127,7 @@ router.post('/googleLogin', async (req, res) => {
     console.error(e);
     res.status(400).send(e);
   }
-})
+});
 
-router.get('/', async (req, res) => {
-  try {
-    const users = await Users.find();
-    res.send(users);
-  } catch (e) {
-    res.send(e);
-  }
-})
 
 module.exports = router;

@@ -1,7 +1,8 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import {Button} from "@material-ui/core";
+import {Button, CardMedia, Paper} from "@material-ui/core";
+import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
 
 
 const useStyles = makeStyles({
@@ -10,22 +11,39 @@ const useStyles = makeStyles({
     width: 600,
     border: '2px solid #000',
     backgroundColor: 'white',
-    top: '50%',
+    top: '10%',
     left: '25%',
+    textAlign: 'center'
   },
+  media: {
+    width: 500,
+    height: 500,
+    margin: '5px auto'
+  },
+  closeBtn: {
+    margin: 10
+  }
 });
 
-const SimpleModal = ({open, handleClose}) => {
+const SimpleModal = ({open, handleClose, image}) => {
   const classes = useStyles();
+  const url = 'http://localhost:8000'+image;
 
   const body = (
-    <div className={classes.paper}>
-      <h2 id="simple-modal-title">Text in a modal</h2>
-      <Button onClick={handleClose}>
+    <Paper className={classes.paper}>
+      <CardMedia
+        image={url}
+        className={classes.media}
+      />
+      <Button
+        variant='outlined'
+        className={classes.closeBtn}
+        onClick={handleClose}
+        endIcon={<CancelPresentationIcon/>}
+      >
         close
       </Button>
-      <SimpleModal />
-    </div>
+    </Paper>
   );
 
   return (

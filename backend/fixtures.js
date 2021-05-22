@@ -16,14 +16,12 @@ const run = async () => {
     email: 'user@mail.com',
     password: '123',
     token: nanoid(),
-    role: 'user',
     username: 'user',
     avatar: null
   }, {
     email: 'admin@mail.ru',
     password: '123',
     token: nanoid(),
-    role: 'admin',
     username: 'admin',
   });
 

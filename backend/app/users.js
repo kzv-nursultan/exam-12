@@ -1,9 +1,7 @@
-const fs = require('fs').promises;
 const express = require('express');
 const Users = require('../models/Users');
 const config = require('../config');
 const axios = require("axios");
-const path = require("path");
 const {nanoid} = require("nanoid");
 const { OAuth2Client } = require('google-auth-library');
 

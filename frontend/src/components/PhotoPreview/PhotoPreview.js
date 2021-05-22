@@ -17,7 +17,8 @@ const useStyles = makeStyles({
   media: {
     width: 200,
     height: 200,
-    margin: 5
+    margin: 5,
+    cursor: 'pointer',
   },
   navLinks: {
     textDecoration: 'none',
@@ -30,7 +31,6 @@ const useStyles = makeStyles({
 
 const PhotoPreview = ({image, author, name, id}) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const path = '/profile/'+id;
 
@@ -55,7 +55,7 @@ const PhotoPreview = ({image, author, name, id}) => {
       <NavLink to={path} className={classes.navLinks}>
         Author: <strong>{author}</strong>
       </NavLink>
-      <SimpleModal open={open} handleClose={handleClose}/>
+      <SimpleModal open={open} handleClose={handleClose} image={image}/>
     </Paper>
   );
 };

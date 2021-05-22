@@ -3,9 +3,9 @@ import {Grid, makeStyles, Typography} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import {getAuthorsRequest} from "../../store/sagas/picturesSaga";
-import PhotoPreview from "../../components/PhotoPreview/PhotoPreview";
 import Button from "@material-ui/core/Button";
 import {historyPush} from "../../store/sagas/historySaga";
+import UsersPictures from "../../components/UsersPictures/UsersPictures";
 
 const useStyles = makeStyles({
   title: {
@@ -31,7 +31,7 @@ const ProfilePage = (props) => {
   const id = props.match.params.id;
   const user = useSelector(state => state.users.user);
   const usersImages = useSelector(state => state.pictures.pictures);
-  const author = usersImages[0]?.author
+  const author = usersImages[0]?.author ? usersImages[0]?.author : user
 
   useEffect(()=>{
     dispatch(getAuthorsRequest(id));
@@ -43,16 +43,17 @@ const ProfilePage = (props) => {
 
   let photoList = (
     <Typography variant='h5'>
-      Something went wrong...
+      It seems like you don't have any posted images yet
     </Typography>
   )
 
   if (usersImages.length > 0) {
     photoList = (
       usersImages.map(pic => (
-        <PhotoPreview
+        <UsersPictures
           key={pic._id}
-          author={pic.author.username}
+          id={pic._id}
+          author={pic.author._id}
           name={pic.name}
           image={pic.image}
         />

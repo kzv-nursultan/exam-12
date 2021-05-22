@@ -14,6 +14,9 @@ export const {
   postRequest,
   postSuccess,
   postFailure,
+  deleteRequest,
+  deleteSuccess,
+  deleteFailure,
 } = picturesSlice.actions;
 
 export function* getAllPictures() {
@@ -46,6 +49,16 @@ export function* postPicture ({payload: body}) {
     yield put(postFailure(e.response.data));
     NotificationManager.error('Could not sent');
   }
+};
+
+export function* deletePicture ({payload: id}) {
+  try {
+    yield axiosApi.delete('/pictures/' + id);
+    yield put(deleteSuccess(id));
+  } catch (e) {
+    yield put(deleteFailure(e.response.data));
+    NotificationManager.error('Could not delete');
+  }
 }
 
 
@@ -53,6 +66,7 @@ const picturesSaga = [
   takeEvery(getRequest, getAllPictures),
   takeEvery(getAuthorsRequest, getAuthorsPictures),
   takeEvery(postRequest, postPicture),
+  takeEvery(deleteRequest, deletePicture),
 ];
 
 export default picturesSaga;

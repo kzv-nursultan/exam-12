@@ -1,11 +1,11 @@
 import React from 'react';
-import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import Button from "@material-ui/core/Button";
 import {Grid, Menu, MenuItem} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import {historyPush} from "../../../store/sagas/historySaga";
 import {logoutRequest} from "../../../store/sagas/userSaga";
+import {Link} from "react-router-dom";
 
 const useStyle = makeStyles({
   header: {
@@ -23,10 +23,11 @@ const useStyle = makeStyles({
   }
 });
 
-const LoggedInUser = ({username, avatar}) => {
+const LoggedInUser = ({username, avatar, id}) => {
   const classes = useStyle();
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const path = '/profile/'+id;
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -61,8 +62,7 @@ const LoggedInUser = ({username, avatar}) => {
         onClose={handleClose}
       >
         <MenuItem onClick={logOutHandler}> Log Out </MenuItem>
-        <MenuItem component={Link} to='/add'> Add Cocktail </MenuItem>
-        <MenuItem component={Link} to='/my_cocktails'> My cocktails </MenuItem>
+        <MenuItem component={Link} to={path}> My gallery </MenuItem>
       </Menu>
     </>
   );

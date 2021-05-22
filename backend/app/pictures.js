@@ -52,6 +52,15 @@ router.post('/', auth, upload.single('image'), async (req, res) => {
   } catch (e) {
     res.status(400).send(e);
   }
-})
+});
+
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    await Pictures.findByIdAndDelete(req.params.id);
+    res.sendStatus(200);
+  } catch (e) {
+    res.status(500).send(e);
+  }
+});
 
 module.exports = router;

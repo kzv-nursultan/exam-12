@@ -47,7 +47,7 @@ const CustomAppBar = () => {
             <NavLink to='/' className={classes.links}> <strong> Photo Gallery </strong></NavLink>
           </Typography>
           <Grid item className={classes.navs}>
-            {user._id ? (<LoggedInUser username={user.username} avatar={user.avatar}/>) : (<ToolBar/>)}
+            {user._id ? (<LoggedInUser username={user.username} avatar={user.avatar} id={user._id}/>) : (<ToolBar/>)}
           </Grid>
         </Toolbar>
       </AppBar>

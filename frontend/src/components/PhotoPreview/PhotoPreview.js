@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import {CardMedia, makeStyles, Paper} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import {useDispatch} from "react-redux";
-import {historyPush} from "../../store/sagas/historySaga";
 import {NavLink} from "react-router-dom";
 import SimpleModal from "../UI/Modal/Modal";
 

@@ -11,9 +11,10 @@ const useStyles = makeStyles({
     width: 600,
     border: '2px solid #000',
     backgroundColor: 'white',
-    top: '10%',
-    left: '25%',
-    textAlign: 'center'
+    top: '50%',
+    left: '50%',
+    textAlign: 'center',
+    transform: 'translate(-50%, -50%)',
   },
   media: {
     width: 500,

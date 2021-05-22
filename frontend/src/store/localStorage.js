@@ -1,7 +1,7 @@
 export const saveToLocalStorage = state => {
   try {
     const serializedState = JSON.stringify(state);
-    localStorage.setItem('exam-12', serializedState);
+    localStorage.setItem('gallery', serializedState);
   } catch (e) {
     console.log('Could not save state');
   }
@@ -9,7 +9,7 @@ export const saveToLocalStorage = state => {
 
 export const loadFromLocalStorage = () => {
   try {
-    const serializedState = localStorage.getItem('exam-12');
+    const serializedState = localStorage.getItem('gallery');
     if (serializedState === null) {
       return undefined;
     }

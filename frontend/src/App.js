@@ -6,6 +6,8 @@ import MainPage from "./containers/MainPage/MainPage";
 import Register from "./containers/Register/Register";
 import Login from "./containers/Login/Login";
 import CustomAppBar from "./components/UI/CustomAppBar/CustomAppBar";
+import ProfilePage from "./containers/ProfilePage/ProfilePage";
+import AddPhoto from "./containers/AddPhoto/AddPhoto";
 
 function App() {
   const user = useSelector(state => state.users.user);
@@ -21,7 +23,14 @@ function App() {
         <Route path='/' exact component={MainPage}/>
         <Route path='/register' exact component={Register}/>
         <Route path='/login' exact component={Login}/>
+        <Route path='/profile/:id' component={ProfilePage}/>
 
+        <ProtectedRoute
+          path='/add'
+          component={AddPhoto}
+          isAllowed={user._id}
+          redirectTo='/login'
+        />
 
       </Switch>
     </>

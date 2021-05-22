@@ -22,9 +22,10 @@ const MainPage = () => {
     picturesList = (
       pictures.map(pic => (
         <PhotoPreview
-          key={pic.id}
+          key={pic._id}
           image={pic.image}
           author={pic.author.username}
+          id={pic.author._id}
           name={pic.name}
         />
       ))
